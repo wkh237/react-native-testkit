@@ -1,4 +1,3 @@
-//@flow
 import React, {Component} from 'react';
 import {
   AppRegistry,
@@ -31,13 +30,16 @@ export default class Reporter extends Component {
       let pass = true
       let foundAssertions = false
 
-      Array.isArray(t.result) && t.result.forEach((r) => {
-        if(r.type.name === 'Assert') {
-          foundAssertions = true
-          pass = pass && (r.props.actual === r.props.expect)
-        }
-      })
-
+      if(Array.isArray(t.result)) {
+        t.result = t.result.map((r) => {
+          if(r.type.name === 'Assert') {
+            foundAssertions = true
+            let comp = r.props.comparer ? r.props.comparer(r.props.expect, r.props.actual) : (r.props.actual === r.props.expect)
+            pass = pass && comp
+          }
+          return React.cloneElement(r, {desc : r.key})
+        })
+      }
       t.status = foundAssertions ? (pass ? 'pass' : 'fail') : t.status
 
       return (<View key={'rn-test-' + t.desc} style={{
@@ -48,7 +50,7 @@ export default class Reporter extends Component {
           alignItems : 'center',
           flexDirection : 'row'
         }}>
-          <Text style={[styles.badge, {flex : 1, borderWidth : 0}]}>{t.desc}</Text>
+          <Text style={[styles.badge, {flex : 1, borderWidth : 0, textAlign : 'left'}]}>{t.desc}</Text>
           <Text style={[styles.badge, this.getBadge(t.status)]}>{t.status}</Text>
         </View>
         <View key={t.desc + '-result'} style={{backgroundColor : '#F4F4F4'}}>
@@ -79,6 +81,7 @@ const styles = StyleSheet.create({
     padding : 4,
     borderRadius : 4,
     borderWidth : 2,
+    textAlign : 'center'
   },
   badgePass: {
     borderColor : '#00a825',
