@@ -40,7 +40,8 @@ export default class Reporter extends Component {
           return React.cloneElement(r, {desc : r.key})
         })
       }
-      t.status = foundAssertions ? (pass ? 'pass' : 'fail') : t.status
+
+      t.status = foundAssertions ? (pass ? 'pass' : 'fail') : 'pass'
 
       return (<View key={'rn-test-' + t.desc} style={{
         borderBottomWidth : 1.5,
@@ -60,8 +61,8 @@ export default class Reporter extends Component {
     })
   }
 
-  getBadge(status: 'waiting' | 'pass' | 'fail') {
-    if(status === 'waiting')
+  getBadge(status: 'running' | 'pass' | 'fail') {
+    if(status === 'running')
       return styles.badgeWaiting
     else if(status === 'pass')
       return styles.badgePass
