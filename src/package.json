@@ -1,0 +1,16 @@
+{
+  "name": "react-native-testkit",
+  "version": "0.1.0",
+  "description": "Toolkit for writting react native test app.",
+  "main": "index.js",
+  "keywords": [
+    "react",
+		"test",
+		"react-native"
+  ],
+  "repository": {
+    "url": "https://github.com/wkh237/react-native-testkit"
+  },
+  "author": "wkh237",
+  "license": "MIT"
+}
