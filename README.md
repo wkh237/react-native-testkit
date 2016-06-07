@@ -108,11 +108,11 @@ Get all test properties.
 
 ## Components
 
-### <Assert expect={`any`} comparer={(val1, val2) => bool} actual={`any`} >
+### `<Assert expect={any} comparer={(val1, val2) => bool} actual={any} >`
 
 Add an assertion to test case, property `comparer` is optional, by default it compares value in `expect` and `actual` property by using `===` operator.
 
-### <Info>{...any}</Info>
+### `<Info>{...any}</Info>`
 
 A component to log anything in test report.
 
