@@ -2,7 +2,7 @@
 
 <img src="img/preview.gif" width="306" style="display : block; text-align : center"/>
 
-Toolkit for making react native test app. This project is in a very early stage, it could be just a concept of React Native test framework, or merely a toolkit that helps developers build sample app and tests in the same time. If you're getting interested in this module, you may keep reading the following content.
+Toolkit for making react native test app. This project is in a very early stage, it could be just a concept of React Native test framework, or merely a toolkit that helps developers build sample app and tests in the same time. If you're getting interested in this module, you may keep reading the following content, any suggestions and PR are welcomed.
 
 ## The Concept
 
