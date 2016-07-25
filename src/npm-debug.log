@@ -1,0 +1,97 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/xeiyan/.nvm/versions/node/v5.7.1/bin/node',
+1 verbose cli   '/Users/xeiyan/.nvm/versions/node/v5.7.1/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@3.6.0
+3 info using node@v5.7.1
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/xeiyan/code/rn-testkit/src',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/xeiyan/.npm/react-native-testkit/0.1.1/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/xeiyan/.npm correctMkdir not in flight; initializing
+10 info lifecycle react-native-testkit@0.1.1~prepublish: react-native-testkit@0.1.1
+11 silly lifecycle react-native-testkit@0.1.1~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/Users/xeiyan/.npm/react-native-testkit/0.1.1/package.tgz',
+12 verbose tar pack   '/Users/xeiyan/code/rn-testkit/src' ]
+13 verbose tarball /Users/xeiyan/.npm/react-native-testkit/0.1.1/package.tgz
+14 verbose folder /Users/xeiyan/code/rn-testkit/src
+15 verbose addLocalTarball adding from inside cache /Users/xeiyan/.npm/react-native-testkit/0.1.1/package.tgz
+16 verbose correctMkdir /Users/xeiyan/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd react-native-testkit@0.1.1
+18 verbose afterAdd /Users/xeiyan/.npm/react-native-testkit/0.1.1/package/package.json not in flight; writing
+19 verbose correctMkdir /Users/xeiyan/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /Users/xeiyan/.npm/react-native-testkit/0.1.1/package/package.json written
+21 silly publish { name: 'react-native-testkit',
+21 silly publish   version: '0.1.1',
+21 silly publish   description: 'Toolkit for writting react native test app.',
+21 silly publish   main: 'index.js',
+21 silly publish   keywords: [ 'react', 'test', 'react-native' ],
+21 silly publish   repository: { url: 'git+https://github.com/wkh237/react-native-testkit.git' },
+21 silly publish   author: { name: 'wkh237' },
+21 silly publish   license: 'MIT',
+21 silly publish   readme: '# react-native-testkit\n\n<img src="img/preview.gif" width="306" style="display : block; text-align : center"/>\n\nToolkit for making react native test app. This project is in a very early stage, it could be just a concept of React Native test framework, or merely a toolkit that helps developers build sample app and tests in the same time. If you\'re getting interested in this module, you may keep reading the following content.\n\n## The Concept\n\nI\'ve made this module when I was developing [react-native-fetch-blob](https://github.com/wkh237/react-native-fetch-blob), a file system and network related React Native module. The module depends heavily on native code, and I was finding a way to test it, but it seems the most practical way to test native modules is run test cases inside a real RN app. Therefore I started to work on this project, something that can build sample app and run test cases at the same time.\n\nFinally I made some components and APIs that make the test cases code could be written in this way\n\n```js\ndescribe(\'1 + 1 should be 2\', (report, done) => {\n\n  let expect = 2\n  let actual = 1 + 1\n  report(\n    <Assert key="1 is a number" expect={\'number\'} actual={typeof 1} />,\n    <Assert key="1 is not greater than 1"\n            expect={1}\n            comparer={Comparer.notGreater}\n            actual={1} />,\n    <Assert key="1 + 1 = 2" expect={expect} actual={1 + 1} />,\n    <Info>\n      <Text>log information on test report</Text>\n    </Info>\n  )\n  done()\n\n})\n```\n\nThe whole app will be wrapped into a component called `Reporter`, as the test executes, the test report will be displayed.\n\n```js\nclass SampleTestApp extends Component {\n\n  componentDidMount() {\n    // execute tests\n    RNTestKit.run(this)\n  }\n\n  render() {\n    return <RNTest.Reporter />\n  }\n\n}\n```\n\n## Install\n\n```sh\n$ npm install --save react-native-testkit\n```\n\n## Example\n\nCheck tests in [react-native-fetch-blob](https://github.com/wkh237/react-native-fetch-blob/tree/master/test).\n\n## API\n\n### run(`ctx`)\n\nRun test cases.\n\n#### ctx:ReactNativeElementContext\nThe container of `Reporter` component.\n\n### describe(`name`, (`report`, `done`) => void)\n\nDefine a test case named `name`, and a test body in 2nd argument.\n\n### config(options)\n\nReturns a `describe` function that overrides default options, here\'s an example\n\n```js\nlet describeForFoo = TestKit.config({\n  // timeout of test case\n  timeout : 9000,\n  // run test case automatically or not\n  run : false,\n  // test case group name, default to `common`\n  group : \'Foo\',\n  // expand report only when test case failed, by default it always expands\n  expand : \'onFail\'\n})\n\ndescribeForFoo(\'Foo test 1\', (report, done) => {\n\n  ...\n  done()\n})\n\n```\n\n### prop(`name`, `val`)\n\nSet a global test property, useful when test case are separated in different files.\n\n### prop()\n\nGet all test properties.\n\n\n## Components\n\n### `<Assert expect={any} comparer={(val1, val2) => bool} actual={any} >`\n\nAdd an assertion to test case, property `comparer` is optional, by default it compares value in `expect` and `actual` property by using `===` operator.\n\n### `<Info>{...any}</Info>`\n\nA component to log anything in test report.\n\n## TODO\n\nMore components and reporters.\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   bugs: { url: 'https://github.com/wkh237/react-native-testkit/issues' },
+21 silly publish   homepage: 'https://github.com/wkh237/react-native-testkit#readme',
+21 silly publish   _id: 'react-native-testkit@0.1.1',
+21 silly publish   scripts: {},
+21 silly publish   _shasum: 'f7509aedf5ec9566452c3b0b5d8162e80346689c',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name react-native-testkit
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry uri https://registry.npmjs.org/react-native-testkit
+27 verbose publish registryBase https://registry.npmjs.org/
+28 silly publish uploading /Users/xeiyan/.npm/react-native-testkit/0.1.1/package.tgz
+29 verbose request uri https://registry.npmjs.org/react-native-testkit
+30 verbose request sending authorization for write operation
+31 info attempt registry request try #1 at 11:45:47
+32 verbose request using bearer token for auth
+33 verbose request id 596b55c1d9a9f1b6
+34 http request PUT https://registry.npmjs.org/react-native-testkit
+35 http 403 https://registry.npmjs.org/react-native-testkit
+36 verbose headers { 'content-type': 'application/json',
+36 verbose headers   'cache-control': 'max-age=300',
+36 verbose headers   'content-length': '95',
+36 verbose headers   'accept-ranges': 'bytes',
+36 verbose headers   date: 'Mon, 25 Jul 2016 03:45:49 GMT',
+36 verbose headers   via: '1.1 varnish',
+36 verbose headers   connection: 'keep-alive',
+36 verbose headers   'x-served-by': 'cache-hkg6824-HKG',
+36 verbose headers   'x-cache': 'MISS',
+36 verbose headers   'x-cache-hits': '0',
+36 verbose headers   'x-timer': 'S1469418347.887707,VS0,VE1497',
+36 verbose headers   vary: 'Accept-Encoding' }
+37 verbose request invalidating /Users/xeiyan/.npm/registry.npmjs.org/react-native-testkit on PUT
+38 error publish Failed PUT 403
+39 verbose stack Error: "You cannot publish over the previously published version 0.1.1." : react-native-testkit
+39 verbose stack     at makeError (/Users/xeiyan/.nvm/versions/node/v5.7.1/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+39 verbose stack     at CachingRegistryClient.<anonymous> (/Users/xeiyan/.nvm/versions/node/v5.7.1/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+39 verbose stack     at Request._callback (/Users/xeiyan/.nvm/versions/node/v5.7.1/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+39 verbose stack     at Request.self.callback (/Users/xeiyan/.nvm/versions/node/v5.7.1/lib/node_modules/npm/node_modules/request/request.js:198:22)
+39 verbose stack     at emitTwo (events.js:100:13)
+39 verbose stack     at Request.emit (events.js:185:7)
+39 verbose stack     at Request.<anonymous> (/Users/xeiyan/.nvm/versions/node/v5.7.1/lib/node_modules/npm/node_modules/request/request.js:1035:10)
+39 verbose stack     at emitOne (events.js:95:20)
+39 verbose stack     at Request.emit (events.js:182:7)
+39 verbose stack     at IncomingMessage.<anonymous> (/Users/xeiyan/.nvm/versions/node/v5.7.1/lib/node_modules/npm/node_modules/request/request.js:962:12)
+40 verbose statusCode 403
+41 verbose pkgid react-native-testkit
+42 verbose cwd /Users/xeiyan/code/rn-testkit/src
+43 error Darwin 15.5.0
+44 error argv "/Users/xeiyan/.nvm/versions/node/v5.7.1/bin/node" "/Users/xeiyan/.nvm/versions/node/v5.7.1/bin/npm" "publish"
+45 error node v5.7.1
+46 error npm  v3.6.0
+47 error code E403
+48 error "You cannot publish over the previously published version 0.1.1." : react-native-testkit
+49 error If you need help, you may report this error at:
+49 error     <https://github.com/npm/npm/issues>
+50 verbose exit [ 1, true ]
