@@ -1,5 +1,7 @@
 # react-native-testkit
 
+<img src="img/preview.gif" width="306" style="display : block; text-align : center"/>
+
 Toolkit for making react native test app. This project is in a very early stage, it could be just a concept of React Native test framework, or merely a toolkit that helps developers build sample app and tests in the same time. If you're getting interested in this module, you may keep reading the following content.
 
 ## The Concept
@@ -28,10 +30,6 @@ describe('1 + 1 should be 2', (report, done) => {
 
 })
 ```
-
-And this is what it looks like as an sample App
-
-![app preview](img/testkit-demo.gif)
 
 The whole app will be wrapped into a component called `Reporter`, as the test executes, the test report will be displayed.
 
