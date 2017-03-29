@@ -80,7 +80,6 @@ export default class Reporter extends Component {
           style={[styles.container]}
           dataSource={this.ds}
           renderRow={this.renderTest.bind(this)}
-          renderScrollComponent={props => <RecyclerViewBackedScrollView {...props} />}
           renderSectionHeader={(data, id) => {
             return (
               <View style={styles.sectionHeader}>
