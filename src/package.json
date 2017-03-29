@@ -1,6 +1,6 @@
 {
   "name": "react-native-testkit",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Toolkit for writting react native test app.",
   "main": "index.js",
   "keywords": [
